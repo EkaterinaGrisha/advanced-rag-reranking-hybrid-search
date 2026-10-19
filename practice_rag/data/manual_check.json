@@ -1,0 +1,142 @@
+[
+ {
+  "qid": "q04",
+  "reranker": "без reranker",
+  "correctness": 0,
+  "grounded": 0,
+  "note": "Процент неустойки не назван. Оценщик признал ответ обоснованным, но формулировка о пункте 5 статьи 28 взята из контекста о сроках выполнения работ и неверно отнесена к статье 23; в аналогичном случае (q04, ms-marco-MiniLM-L6) оценщик поставил grounded = 0."
+ },
+ {
+  "qid": "q10",
+  "reranker": "без reranker",
+  "correctness": 2,
+  "grounded": 1,
+  "note": ""
+ },
+ {
+  "qid": "q21",
+  "reranker": "без reranker",
+  "correctness": 2,
+  "grounded": 1,
+  "note": ""
+ },
+ {
+  "qid": "q26",
+  "reranker": "без reranker",
+  "correctness": 2,
+  "grounded": 1,
+  "note": ""
+ },
+ {
+  "qid": "q05",
+  "reranker": "mmarco-mMiniLMv2-L12 (курс)",
+  "correctness": 0,
+  "grounded": 0,
+  "note": ""
+ },
+ {
+  "qid": "q07",
+  "reranker": "mmarco-mMiniLMv2-L12 (курс)",
+  "correctness": 0,
+  "grounded": 0,
+  "note": ""
+ },
+ {
+  "qid": "q24",
+  "reranker": "mmarco-mMiniLMv2-L12 (курс)",
+  "correctness": 2,
+  "grounded": 1,
+  "note": ""
+ },
+ {
+  "qid": "n02",
+  "reranker": "mmarco-mMiniLMv2-L12 (курс)",
+  "correctness": 2,
+  "grounded": 1,
+  "note": ""
+ },
+ {
+  "qid": "q03",
+  "reranker": "ms-marco-MiniLM-L6 (задание)",
+  "correctness": 0,
+  "grounded": 0,
+  "note": ""
+ },
+ {
+  "qid": "q04",
+  "reranker": "ms-marco-MiniLM-L6 (задание)",
+  "correctness": 0,
+  "grounded": 0,
+  "note": ""
+ },
+ {
+  "qid": "q14",
+  "reranker": "ms-marco-MiniLM-L6 (задание)",
+  "correctness": 1,
+  "grounded": 0,
+  "note": ""
+ },
+ {
+  "qid": "q33",
+  "reranker": "ms-marco-MiniLM-L6 (задание)",
+  "correctness": 0,
+  "grounded": 0,
+  "note": ""
+ },
+ {
+  "qid": "q05",
+  "reranker": "ruBERT-msmarco",
+  "correctness": 1,
+  "grounded": 1,
+  "note": "Ответ начинается с «Да, если изделие имеет недостатки», затем верно приводит правило; оценка 1 обоснована."
+ },
+ {
+  "qid": "q06",
+  "reranker": "ruBERT-msmarco",
+  "correctness": 2,
+  "grounded": 1,
+  "note": ""
+ },
+ {
+  "qid": "q27",
+  "reranker": "ruBERT-msmarco",
+  "correctness": 2,
+  "grounded": 1,
+  "note": ""
+ },
+ {
+  "qid": "q28",
+  "reranker": "ruBERT-msmarco",
+  "correctness": 2,
+  "grounded": 1,
+  "note": ""
+ },
+ {
+  "qid": "q06",
+  "reranker": "bge-reranker-v2-m3",
+  "correctness": 2,
+  "grounded": 1,
+  "note": ""
+ },
+ {
+  "qid": "q16",
+  "reranker": "bge-reranker-v2-m3",
+  "correctness": 2,
+  "grounded": 1,
+  "note": ""
+ },
+ {
+  "qid": "q28",
+  "reranker": "bge-reranker-v2-m3",
+  "correctness": 1,
+  "grounded": 1,
+  "note": "Вывод верен, но указано приложение № 2 вместо № 1; по правилу оценки это неточность, не меняющая вывод (1). Оценка пограничная: ошибка относится к дополнительным сведениям."
+ },
+ {
+  "qid": "n03",
+  "reranker": "bge-reranker-v2-m3",
+  "correctness": 1,
+  "grounded": 0,
+  "note": ""
+ }
+]

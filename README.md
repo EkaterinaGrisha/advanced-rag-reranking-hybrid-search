@@ -1,0 +1,118 @@
+# Advanced RAG: выбор Cross-Encoder и настройка гибридного поиска
+
+[![nbviewer](https://img.shields.io/badge/render-nbviewer-orange)](https://nbviewer.org/github/EkaterinaGrisha/advanced-rag-reranking-hybrid-search/blob/main/advanced_rag_reranking_hybrid_search.ipynb)
+
+Работа выполнена в рамках практического задания курса по работе с LLM (практика 2, Advanced RAG). Объект исследования — RAG-конвейер из ноутбука курса:
+
+1. перефразирование вопроса языковой моделью;
+2. гибридный поиск: векторный поиск и BM25, объединённые `EnsembleRetriever`;
+3. переранжирование кандидатов моделью Cross-Encoder;
+4. генерация ответа по пяти лучшим фрагментам.
+
+Конвейер применён к базе знаний консультанта ювелирного магазина — шести официальным PDF-документам о продаже ювелирных изделий и защите прав покупателей (564 фрагмента). Для объективной оценки составлен размеченный набор из 36 вопросов. Для 33 из них определены фрагменты с ответом и эталонные ответы; 3 вопроса не имеют ответа в документах.
+
+**Стек экспериментов** (все эксперименты проведены 19 октября 2026 года):
+
+* компьютер — Apple M5 (10 ядер), 32 ГБ ОЗУ, macOS, Python 3.11; кодировщики и Cross-Encoder выполняются на CPU, как в ноутбуке курса;
+* конвейер — LangChain 1.x:
+  * `PyPDFLoader`;
+  * `RecursiveCharacterTextSplitter` (фрагменты 800 символов, перекрытие 150);
+  * `InMemoryVectorStore`, `BM25Retriever`, `EnsembleRetriever`;
+  * `CrossEncoder` из sentence-transformers;
+* перефразирование и генерация ответа — GigaChat-2 (Freemium);
+* независимый оценщик ответов (LLM-as-a-Judge) — `deepseek-flash`;
+* кодировщики — `multilingual-e5` small, base и large (с префиксами «query: » / «passage: » и без них), BGE-M3;
+* Cross-Encoder:
+  * `cross-encoder/mmarco-mMiniLMv2-L12-H384-v1` (модель курса);
+  * `cross-encoder/ms-marco-MiniLM-L-6-v2` (модель из условия задания);
+  * `DiTy/cross-encoder-russian-msmarco`;
+  * `BAAI/bge-reranker-v2-m3`.
+
+Все измерения, ответы моделей и оценки получены в результате реальных запусков и сохранены в каталоге `practice_rag/results/`.
+
+## Содержание
+
+| № | Задание | Что сделано |
+|---|---|---|
+| — | Подготовка | корпус из 6 PDF; размеченный набор из 36 вопросов (лексические, перефразированные, без ответа); проверка этапа перефразирования: найдена и исправлена ошибка промпта курса |
+| 1 | Эксперимент с Cross-Encoder | 5 вариантов переранжирования × 36 вопросов через полный конвейер; порядок документов (совпадение пятёрок, позиция первого релевантного фрагмента); Hit@1, Hit@5, MRR@5, nDCG@5 с бутстреп-интервалами; качество ответов по оценке LLM-as-a-Judge с ручной проверкой оценщика; время этапов на CPU |
+| 2 | Гиперпараметры гибридного поиска | перебор 405 конфигураций (веса, 7 вариантов кодировщика, `k` = 5, 10, 20 для каждого ретривера, токенизация BM25) с переранжированием и без; проверка совпадения с объектами LangChain; документы и происхождение фрагментов контекста; время поиска, переранжирования и генерации; Парето-фронт «качество — время» и проверка выбора на отложенных вопросах; ответы модели для 8 конфигураций |
+
+## Основные результаты
+
+* **Ошибка в конвейере курса.** Промпт перефразирования «…на языке оригинала» приводит к тому, что GigaChat-2 переводит 82 % запросов на английский язык, и Hit@5 падает с 0,94 до 0,64. Формулировка «…на языке вопроса пользователя» и очистка запроса от кавычек устраняют проблему.
+* **Cross-Encoder.**
+  * Выбор модели меняет MRR@5 контекста от 0,23 до 0,73, а долю верных ответов — от 0,28 до 0,69.
+  * Модель курса (mmarco) значимо улучшает контекст по сравнению с вариантом без переранжирования: MRR@5 0,72 против 0,51.
+  * bge-reranker-v2-m3 даёт то же качество, но в 8 раз медленнее на CPU.
+  * Англоязычная модель из условия задания хуже, чем отсутствие переранжирования (MRR@5 0,23). Её словарь разбивает русский текст на отдельные буквы, и 84 % фрагментов усекаются.
+  * Русскоязычная ruBERT-msmarco уступает мультиязычной модели курса.
+* **Веса `EnsembleRetriever`** в конвейере курса не влияют на результат: Cross-Encoder переупорядочивает весь пул кандидатов, и пятёрки совпадают в 9 072 из 9 072 сравнений. Без переранжирования неравные веса работают как переключатель приоритета ретриверов; 0,7 / 0,3 и 0,5 / 0,5 лучше, чем 0,3 / 0,7.
+* **Кодировщик.** В векторном поиске качество растёт с размером модели (MRR@5 от 0,50–0,55 до 0,71 у BGE-M3), а префиксы E5 улучшают модели base и large примерно на 0,07. После переранжирования различия почти исчезают: кодировщик влияет только через полноту пула кандидатов.
+* **Число документов `k`.** Время переранжирования линейно по числу кандидатов: 13,7 мс на кандидата на CPU. Рост `k` до 20 / 20 удваивает время и ухудшает MRR@5 (0,72 → 0,68). Стемминг в BM25 повышает Hit@5 этого ретривера с 0,55 до 0,70 без затрат времени.
+* **Время ответа** определяется обращениями к GigaChat: 0,45 с на перефразирование и 0,6–0,8 с на генерацию. Генерация не зависит от параметров поиска: её время определяется длиной ответа.
+* **Баланс точности и скорости.**
+  * Рекомендуемая конфигурация — e5-large с префиксами, BM25 со стеммингом, `k` = 5 / 5, Cross-Encoder курса. Она сохраняет Hit@5 и полноту пула конфигурации курса и сокращает время поиска и переранжирования с 268 до 180 мс.
+  * Для максимальной скорости подходит векторный поиск BGE-M3 без переранжирования: 57 мс, MRR@5 0,71 против 0,72.
+  * Проверка на отложенных вопросах показала, что выбор лучшей конфигурации по 33 вопросам требует подтверждения на большем наборе.
+* **Качество ответов** ограничено прежде всего наличием релевантного фрагмента в контексте и ошибками генератора. При наличии такого фрагмента полностью верны 69 % ответов, без него — 5 %.
+
+## Структура репозитория
+
+```
+advanced_rag_reranking_hybrid_search.ipynb   ноутбук с кодом, результатами и выводами
+practice_rag/documents/                      корпус: 6 официальных PDF-документов
+practice_rag/data/questions.json             36 вопросов: тип, эталонный ответ, шаблоны релевантных фрагментов
+practice_rag/data/manual_check.json          ручная проверка 20 оценок LLM-as-a-Judge
+practice_rag/results/                        результаты экспериментов, кэш ответов моделей, журнал обращений к API
+requirements.txt                             зависимости
+.env.example                                 шаблон файла с ключами
+certs/russian_trusted_root_ca.pem            корневой сертификат Минцифры для проверки SSL GigaChat
+```
+
+## Воспроизведение
+
+1. Установить зависимости: `pip install -r requirements.txt` (проверено на Python 3.11).
+2. Открыть ноутбук и выполнить все ячейки.
+
+При наличии каталога `practice_rag/results/` ноутбук воспроизводит все таблицы и выводы без новых измерений и запросов к API: ответы моделей берутся из кэша `llm_cache.jsonl`. Ключи API для этого не нужны. Для демонстрационного запуска конвейера автоматически загружаются модели `intfloat/multilingual-e5-base` и `cross-encoder/mmarco-mMiniLMv2-L12-H384-v1` (около 1,5 ГБ).
+
+Чтобы провести эксперименты заново, нужно:
+
+* установить `RERUN = True`;
+* скопировать `.env.example` в `.env` и указать ключи `GIGACHAT_CREDENTIALS`, `DEEPSEEK_API_KEY` и `OPENROUTER_API_KEY`.
+
+В этом случае загружаются все сравниваемые модели (около 8 ГБ), а время измеряется на текущем компьютере.
+
+## Источники данных
+
+| Файл | Документ | Источник |
+|---|---|---|
+| `zozpp_2300-1.pdf` | Закон РФ от 07.02.1992 № 2300-1 «О защите прав потребителей» (ред. от 28.12.2025, с изм. от 17.02.2026; выгрузка «КонсультантПлюс») | https://edu.lenobl.ru/media/uploads/userfiles/2026/05/14/Закон_РФ_от_07_02_1992_N_2300-1.pdf |
+| `fz41_precious_metals.pdf` | Федеральный закон от 26.03.1998 № 41-ФЗ «О драгоценных металлах и драгоценных камнях» (с изменениями от 31.07.2025 № 334-ФЗ) | https://www.gokhran.ru/common/upload/files/gohran/956_Federal'nyj_zakon_ot_26.03.1998_g._№_41-FZ.pdf |
+| `fpp_189n_expertise.pdf` | Приказ ФПП от 24.11.2025 № 189н «Об утверждении Порядка проведения экспертизы ювелирных и других изделий из драгоценных металлов» | https://probpalata.gov.ru/files/Приказ-ФПП-24.11.2025-189н.pdf |
+| `fpp_195n_sampling.pdf` | Приказ ФПП от 25.11.2025 № 195н «Об утверждении норм отбора проб на опробование и анализ ювелирных и других изделий из драгоценных металлов» | https://probpalata.gov.ru/files/Приказ-ФПП-25.11.2025-195н.pdf |
+| `rpn_altai_jewelry.pdf` | Управление Роспотребнадзора по Республике Алтай. «О правилах приобретения ювелирных изделий», 07.03.2023 | https://04.rospotrebnadzor.ru/index.php/consumer-information/faq/18133-07032023.pdf |
+| `rpn_luga_jewelry.pdf` | «Роспотребнадзор рекомендует: как правильно выбрать ювелирное изделие» (сайт администрации Лужского района), 2023 | https://luga.ru/Files/file/1673875081yuvelirka.pdf |
+
+Памятки 2023 года отражают нормы на дату публикации; ответы системы оцениваются по содержанию корпуса. Сертификат `certs/russian_trusted_root_ca.pem` загружен с официального ресурса https://www.gosuslugi.ru/crt и используется только клиентом GigaChat.
+
+## Технологии
+
+Python, Jupyter, LangChain, sentence-transformers, PyTorch, rank-bm25, Snowball, pypdf, GigaChat SDK, OpenAI SDK (DeepSeek), pandas, Matplotlib.
+
+## English summary
+
+A study of the Advanced RAG pipeline from the course notebook on a Russian-language corpus: six official PDF documents on jewellery sales and consumer rights, 564 chunks. The pipeline consists of LLM query rewriting, hybrid retrieval (dense + BM25 via `EnsembleRetriever`), Cross-Encoder reranking and answer generation. Evaluation uses a labelled set of 36 questions with relevant-chunk patterns and reference answers. Answers are scored by an independent LLM judge (DeepSeek), which was checked against 20 manual ratings. All comparisons report paired bootstrap 95% CIs.
+
+* **Bug in the course pipeline.** The query-rewriting prompt ("in the original language") makes GigaChat translate 82% of queries into English, and Hit@5 drops from 0.94 to 0.64. A one-phrase fix and quote stripping restore it.
+* **Cross-Encoder choice matters most.**
+  * Context MRR@5 ranges from 0.23 to 0.73 depending on the model.
+  * The course model (mMiniLMv2-L12 trained on mMARCO) is the best quality/speed trade-off. bge-reranker-v2-m3 matches its quality but is 8× slower on CPU.
+  * The English `ms-marco-MiniLM-L-6-v2` suggested by the assignment is worse than no reranking: its vocabulary shreds Cyrillic text and truncates 84% of chunks.
+* **Ensemble weights do not matter when the Cross-Encoder reranks the whole candidate pool**: top-5 contexts are identical in 9,072 of 9,072 comparisons. Without reranking, unequal weights act as a priority switch between retrievers.
+* **Encoders and k.**
+  * Larger encoders and E5 prefixes improve dense retrieval, but after reranking they matter only through pool recall.
+  * Reranking cost is linear in the number of candidates (13.7 ms each on CPU). Larger `k` slows the pipeline and slightly hurts quality.
+  * Stemmed BM25 improves BM25 and hybrid retrieval at no cost.
+* **Balance.** e5-large with prefixes, stemmed BM25, `k` = 5/5 and the course reranker keeps the course pipeline's recall and Hit@5 at 180 ms instead of 268 ms. Dense BGE-M3 retrieval without a reranker reaches nearly the same MRR@5 in 57 ms. A split-half check shows that picking the best of 405 configurations on 33 questions needs confirmation on a larger set.
