@@ -1,0 +1,485 @@
+[
+ {
+  "encoder": "e5-large",
+  "tokenizer": "stem",
+  "mode": "гибрид",
+  "k": 5,
+  "ms": 58.04061453090981
+ },
+ {
+  "encoder": "—",
+  "tokenizer": "split",
+  "mode": "только BM25",
+  "k": 5,
+  "ms": 0.2698542666621506
+ },
+ {
+  "encoder": "bge-m3",
+  "tokenizer": "split",
+  "mode": "гибрид",
+  "k": 5,
+  "ms": 57.40797927137464
+ },
+ {
+  "encoder": "e5-large",
+  "tokenizer": "—",
+  "mode": "только векторный",
+  "k": 10,
+  "ms": 57.54358327249065
+ },
+ {
+  "encoder": "e5-small",
+  "tokenizer": "—",
+  "mode": "только векторный",
+  "k": 10,
+  "ms": 9.986906487029046
+ },
+ {
+  "encoder": "e5-small",
+  "tokenizer": "stem",
+  "mode": "гибрид",
+  "k": 10,
+  "ms": 10.768760228529572
+ },
+ {
+  "encoder": "e5-small + префиксы",
+  "tokenizer": "split",
+  "mode": "гибрид",
+  "k": 20,
+  "ms": 10.59623941546306
+ },
+ {
+  "encoder": "e5-large + префиксы",
+  "tokenizer": "stem",
+  "mode": "гибрид",
+  "k": 10,
+  "ms": 58.06991650024429
+ },
+ {
+  "encoder": "e5-base + префиксы",
+  "tokenizer": "stem",
+  "mode": "гибрид",
+  "k": 20,
+  "ms": 23.184010526165366
+ },
+ {
+  "encoder": "e5-small + префиксы",
+  "tokenizer": "—",
+  "mode": "только векторный",
+  "k": 20,
+  "ms": 10.162562306504697
+ },
+ {
+  "encoder": "—",
+  "tokenizer": "split",
+  "mode": "только BM25",
+  "k": 20,
+  "ms": 0.29629154596477747
+ },
+ {
+  "encoder": "e5-large + префиксы",
+  "tokenizer": "—",
+  "mode": "только векторный",
+  "k": 10,
+  "ms": 57.89490608731285
+ },
+ {
+  "encoder": "e5-base + префиксы",
+  "tokenizer": "split",
+  "mode": "гибрид",
+  "k": 20,
+  "ms": 23.01964594516903
+ },
+ {
+  "encoder": "e5-small",
+  "tokenizer": "—",
+  "mode": "только векторный",
+  "k": 20,
+  "ms": 10.049135307781398
+ },
+ {
+  "encoder": "e5-base + префиксы",
+  "tokenizer": "split",
+  "mode": "гибрид",
+  "k": 10,
+  "ms": 22.978604247327894
+ },
+ {
+  "encoder": "e5-base (курс)",
+  "tokenizer": "stem",
+  "mode": "гибрид",
+  "k": 10,
+  "ms": 22.986614261753857
+ },
+ {
+  "encoder": "e5-small + префиксы",
+  "tokenizer": "stem",
+  "mode": "гибрид",
+  "k": 10,
+  "ms": 10.633583238814026
+ },
+ {
+  "encoder": "—",
+  "tokenizer": "stem",
+  "mode": "только BM25",
+  "k": 5,
+  "ms": 0.37971901474520564
+ },
+ {
+  "encoder": "e5-small",
+  "tokenizer": "split",
+  "mode": "гибрид",
+  "k": 20,
+  "ms": 10.653281467966735
+ },
+ {
+  "encoder": "e5-large",
+  "tokenizer": "stem",
+  "mode": "гибрид",
+  "k": 10,
+  "ms": 58.705385541543365
+ },
+ {
+  "encoder": "e5-large + префиксы",
+  "tokenizer": "split",
+  "mode": "гибрид",
+  "k": 5,
+  "ms": 58.6321564624086
+ },
+ {
+  "encoder": "e5-base + префиксы",
+  "tokenizer": "—",
+  "mode": "только векторный",
+  "k": 10,
+  "ms": 22.582229401450604
+ },
+ {
+  "encoder": "e5-small + префиксы",
+  "tokenizer": "stem",
+  "mode": "гибрид",
+  "k": 20,
+  "ms": 10.78285404946655
+ },
+ {
+  "encoder": "e5-base (курс)",
+  "tokenizer": "stem",
+  "mode": "гибрид",
+  "k": 20,
+  "ms": 23.13877095002681
+ },
+ {
+  "encoder": "e5-base (курс)",
+  "tokenizer": "—",
+  "mode": "только векторный",
+  "k": 20,
+  "ms": 22.423187794629484
+ },
+ {
+  "encoder": "e5-small + префиксы",
+  "tokenizer": "—",
+  "mode": "только векторный",
+  "k": 10,
+  "ms": 10.17743768170476
+ },
+ {
+  "encoder": "e5-base + префиксы",
+  "tokenizer": "split",
+  "mode": "гибрид",
+  "k": 5,
+  "ms": 23.14809343079105
+ },
+ {
+  "encoder": "e5-large + префиксы",
+  "tokenizer": "stem",
+  "mode": "гибрид",
+  "k": 20,
+  "ms": 58.86426049983129
+ },
+ {
+  "encoder": "e5-small",
+  "tokenizer": "stem",
+  "mode": "гибрид",
+  "k": 5,
+  "ms": 10.688802227377892
+ },
+ {
+  "encoder": "e5-small",
+  "tokenizer": "split",
+  "mode": "гибрид",
+  "k": 10,
+  "ms": 10.76471881242469
+ },
+ {
+  "encoder": "bge-m3",
+  "tokenizer": "—",
+  "mode": "только векторный",
+  "k": 20,
+  "ms": 56.69855227461085
+ },
+ {
+  "encoder": "—",
+  "tokenizer": "stem",
+  "mode": "только BM25",
+  "k": 20,
+  "ms": 0.4023437504656613
+ },
+ {
+  "encoder": "e5-large",
+  "tokenizer": "split",
+  "mode": "гибрид",
+  "k": 5,
+  "ms": 58.31948947161436
+ },
+ {
+  "encoder": "e5-base + префиксы",
+  "tokenizer": "stem",
+  "mode": "гибрид",
+  "k": 5,
+  "ms": 23.40026048477739
+ },
+ {
+  "encoder": "e5-small",
+  "tokenizer": "split",
+  "mode": "гибрид",
+  "k": 5,
+  "ms": 10.721385246142745
+ },
+ {
+  "encoder": "e5-small + префиксы",
+  "tokenizer": "split",
+  "mode": "гибрид",
+  "k": 5,
+  "ms": 10.537614580243826
+ },
+ {
+  "encoder": "e5-base + префиксы",
+  "tokenizer": "stem",
+  "mode": "гибрид",
+  "k": 10,
+  "ms": 23.122781014535576
+ },
+ {
+  "encoder": "e5-large",
+  "tokenizer": "split",
+  "mode": "гибрид",
+  "k": 20,
+  "ms": 58.158802217803895
+ },
+ {
+  "encoder": "bge-m3",
+  "tokenizer": "split",
+  "mode": "гибрид",
+  "k": 10,
+  "ms": 57.568197953514755
+ },
+ {
+  "encoder": "e5-small",
+  "tokenizer": "—",
+  "mode": "только векторный",
+  "k": 5,
+  "ms": 10.24033350404352
+ },
+ {
+  "encoder": "e5-base + префиксы",
+  "tokenizer": "—",
+  "mode": "только векторный",
+  "k": 20,
+  "ms": 22.67236477928236
+ },
+ {
+  "encoder": "e5-base (курс)",
+  "tokenizer": "stem",
+  "mode": "гибрид",
+  "k": 5,
+  "ms": 23.172010551206768
+ },
+ {
+  "encoder": "e5-large + префиксы",
+  "tokenizer": "split",
+  "mode": "гибрид",
+  "k": 20,
+  "ms": 58.430645731277764
+ },
+ {
+  "encoder": "e5-large",
+  "tokenizer": "split",
+  "mode": "гибрид",
+  "k": 10,
+  "ms": 58.46672924235463
+ },
+ {
+  "encoder": "bge-m3",
+  "tokenizer": "—",
+  "mode": "только векторный",
+  "k": 10,
+  "ms": 57.00687499484047
+ },
+ {
+  "encoder": "e5-small + префиксы",
+  "tokenizer": "stem",
+  "mode": "гибрид",
+  "k": 5,
+  "ms": 10.789114749059081
+ },
+ {
+  "encoder": "bge-m3",
+  "tokenizer": "split",
+  "mode": "гибрид",
+  "k": 20,
+  "ms": 57.5098124681972
+ },
+ {
+  "encoder": "—",
+  "tokenizer": "split",
+  "mode": "только BM25",
+  "k": 10,
+  "ms": 0.29461452504619956
+ },
+ {
+  "encoder": "bge-m3",
+  "tokenizer": "—",
+  "mode": "только векторный",
+  "k": 5,
+  "ms": 57.13510402711108
+ },
+ {
+  "encoder": "e5-base + префиксы",
+  "tokenizer": "—",
+  "mode": "только векторный",
+  "k": 5,
+  "ms": 22.218478959985077
+ },
+ {
+  "encoder": "bge-m3",
+  "tokenizer": "stem",
+  "mode": "гибрид",
+  "k": 10,
+  "ms": 57.461583288386464
+ },
+ {
+  "encoder": "e5-base (курс)",
+  "tokenizer": "—",
+  "mode": "только векторный",
+  "k": 5,
+  "ms": 22.206417052075267
+ },
+ {
+  "encoder": "e5-base (курс)",
+  "tokenizer": "split",
+  "mode": "гибрид",
+  "k": 10,
+  "ms": 22.562864469364285
+ },
+ {
+  "encoder": "e5-base (курс)",
+  "tokenizer": "split",
+  "mode": "гибрид",
+  "k": 5,
+  "ms": 22.566489526070654
+ },
+ {
+  "encoder": "e5-small + префиксы",
+  "tokenizer": "split",
+  "mode": "гибрид",
+  "k": 10,
+  "ms": 10.702365019824356
+ },
+ {
+  "encoder": "e5-small + префиксы",
+  "tokenizer": "—",
+  "mode": "только векторный",
+  "k": 5,
+  "ms": 10.135968739632517
+ },
+ {
+  "encoder": "bge-m3",
+  "tokenizer": "stem",
+  "mode": "гибрид",
+  "k": 5,
+  "ms": 57.6162290526554
+ },
+ {
+  "encoder": "e5-large + префиксы",
+  "tokenizer": "split",
+  "mode": "гибрид",
+  "k": 10,
+  "ms": 58.53442725492641
+ },
+ {
+  "encoder": "e5-small",
+  "tokenizer": "stem",
+  "mode": "гибрид",
+  "k": 20,
+  "ms": 10.776718554552644
+ },
+ {
+  "encoder": "e5-base (курс)",
+  "tokenizer": "—",
+  "mode": "только векторный",
+  "k": 10,
+  "ms": 22.301437275018543
+ },
+ {
+  "encoder": "e5-large + префиксы",
+  "tokenizer": "—",
+  "mode": "только векторный",
+  "k": 5,
+  "ms": 58.0478539923206
+ },
+ {
+  "encoder": "e5-base (курс)",
+  "tokenizer": "split",
+  "mode": "гибрид",
+  "k": 20,
+  "ms": 22.575531213078648
+ },
+ {
+  "encoder": "—",
+  "tokenizer": "stem",
+  "mode": "только BM25",
+  "k": 10,
+  "ms": 0.4557814681902528
+ },
+ {
+  "encoder": "e5-large + префиксы",
+  "tokenizer": "—",
+  "mode": "только векторный",
+  "k": 20,
+  "ms": 57.85284348530695
+ },
+ {
+  "encoder": "e5-large",
+  "tokenizer": "—",
+  "mode": "только векторный",
+  "k": 5,
+  "ms": 58.359468705020845
+ },
+ {
+  "encoder": "e5-large",
+  "tokenizer": "stem",
+  "mode": "гибрид",
+  "k": 20,
+  "ms": 58.64351021591574
+ },
+ {
+  "encoder": "bge-m3",
+  "tokenizer": "stem",
+  "mode": "гибрид",
+  "k": 20,
+  "ms": 57.738531148061156
+ },
+ {
+  "encoder": "e5-large",
+  "tokenizer": "—",
+  "mode": "только векторный",
+  "k": 20,
+  "ms": 57.60078149614856
+ },
+ {
+  "encoder": "e5-large + префиксы",
+  "tokenizer": "stem",
+  "mode": "гибрид",
+  "k": 5,
+  "ms": 58.49465646315366
+ }
+]

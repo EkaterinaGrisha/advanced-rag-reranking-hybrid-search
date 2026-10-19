@@ -1,0 +1,7 @@
+.env
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store
+# создаётся при выполнении ноутбука
+practice_rag/cache/

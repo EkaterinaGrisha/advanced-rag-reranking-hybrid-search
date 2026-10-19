@@ -1,0 +1,350 @@
+[
+ {
+  "encoder": "e5-small",
+  "tokenizer": "split",
+  "weights": [
+   0.5,
+   0.5
+  ],
+  "k_dense": 10,
+  "k_bm25": 10,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-small",
+  "tokenizer": "stem",
+  "weights": [
+   0.5,
+   0.5
+  ],
+  "k_dense": 10,
+  "k_bm25": 10,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-small + префиксы",
+  "tokenizer": "split",
+  "weights": [
+   0.5,
+   0.5
+  ],
+  "k_dense": 10,
+  "k_bm25": 10,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-small + префиксы",
+  "tokenizer": "stem",
+  "weights": [
+   0.5,
+   0.5
+  ],
+  "k_dense": 10,
+  "k_bm25": 10,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-base (курс)",
+  "tokenizer": "split",
+  "weights": [
+   0.5,
+   0.5
+  ],
+  "k_dense": 10,
+  "k_bm25": 10,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-base (курс)",
+  "tokenizer": "stem",
+  "weights": [
+   0.5,
+   0.5
+  ],
+  "k_dense": 10,
+  "k_bm25": 10,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-base + префиксы",
+  "tokenizer": "split",
+  "weights": [
+   0.5,
+   0.5
+  ],
+  "k_dense": 10,
+  "k_bm25": 10,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-base + префиксы",
+  "tokenizer": "stem",
+  "weights": [
+   0.5,
+   0.5
+  ],
+  "k_dense": 10,
+  "k_bm25": 10,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-large",
+  "tokenizer": "split",
+  "weights": [
+   0.5,
+   0.5
+  ],
+  "k_dense": 10,
+  "k_bm25": 10,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-large",
+  "tokenizer": "stem",
+  "weights": [
+   0.5,
+   0.5
+  ],
+  "k_dense": 10,
+  "k_bm25": 10,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-large + префиксы",
+  "tokenizer": "split",
+  "weights": [
+   0.5,
+   0.5
+  ],
+  "k_dense": 10,
+  "k_bm25": 10,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-large + префиксы",
+  "tokenizer": "stem",
+  "weights": [
+   0.5,
+   0.5
+  ],
+  "k_dense": 10,
+  "k_bm25": 10,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "bge-m3",
+  "tokenizer": "split",
+  "weights": [
+   0.5,
+   0.5
+  ],
+  "k_dense": 10,
+  "k_bm25": 10,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "bge-m3",
+  "tokenizer": "stem",
+  "weights": [
+   0.5,
+   0.5
+  ],
+  "k_dense": 10,
+  "k_bm25": 10,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-base (курс)",
+  "tokenizer": "split",
+  "weights": [
+   0.5,
+   0.5
+  ],
+  "k_dense": 5,
+  "k_bm25": 5,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-base (курс)",
+  "tokenizer": "split",
+  "weights": [
+   0.5,
+   0.5
+  ],
+  "k_dense": 5,
+  "k_bm25": 10,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-base (курс)",
+  "tokenizer": "split",
+  "weights": [
+   0.5,
+   0.5
+  ],
+  "k_dense": 5,
+  "k_bm25": 20,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-base (курс)",
+  "tokenizer": "split",
+  "weights": [
+   0.5,
+   0.5
+  ],
+  "k_dense": 10,
+  "k_bm25": 5,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-base (курс)",
+  "tokenizer": "split",
+  "weights": [
+   0.5,
+   0.5
+  ],
+  "k_dense": 10,
+  "k_bm25": 20,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-base (курс)",
+  "tokenizer": "split",
+  "weights": [
+   0.5,
+   0.5
+  ],
+  "k_dense": 20,
+  "k_bm25": 5,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-base (курс)",
+  "tokenizer": "split",
+  "weights": [
+   0.5,
+   0.5
+  ],
+  "k_dense": 20,
+  "k_bm25": 10,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-base (курс)",
+  "tokenizer": "split",
+  "weights": [
+   0.5,
+   0.5
+  ],
+  "k_dense": 20,
+  "k_bm25": 20,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-base + префиксы",
+  "tokenizer": "stem",
+  "weights": [
+   0.7,
+   0.3
+  ],
+  "k_dense": 20,
+  "k_bm25": 5,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-base + префиксы",
+  "tokenizer": "stem",
+  "weights": [
+   0.3,
+   0.7
+  ],
+  "k_dense": 20,
+  "k_bm25": 5,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "bge-m3",
+  "tokenizer": "split",
+  "weights": [
+   0.3,
+   0.7
+  ],
+  "k_dense": 5,
+  "k_bm25": 20,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-large + префиксы",
+  "tokenizer": "split",
+  "weights": [
+   1.0,
+   0.0
+  ],
+  "k_dense": 20,
+  "k_bm25": 10,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-small",
+  "tokenizer": "split",
+  "weights": [
+   1.0,
+   0.0
+  ],
+  "k_dense": 5,
+  "k_bm25": 10,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-base (курс)",
+  "tokenizer": "split",
+  "weights": [
+   0.0,
+   1.0
+  ],
+  "k_dense": 10,
+  "k_bm25": 20,
+  "same_pool": 36,
+  "same_top": 36
+ },
+ {
+  "encoder": "e5-base (курс)",
+  "tokenizer": "stem",
+  "weights": [
+   0.0,
+   1.0
+  ],
+  "k_dense": 10,
+  "k_bm25": 5,
+  "same_pool": 36,
+  "same_top": 36
+ }
+]
