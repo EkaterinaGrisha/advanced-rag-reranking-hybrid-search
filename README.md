@@ -105,7 +105,7 @@ Python, Jupyter, LangChain, sentence-transformers, PyTorch, rank-bm25, Snowball,
 
 A study of the Advanced RAG pipeline from the course notebook on a Russian-language corpus: six official PDF documents on jewellery sales and consumer rights, 564 chunks. The pipeline consists of LLM query rewriting, hybrid retrieval (dense + BM25 via `EnsembleRetriever`), Cross-Encoder reranking and answer generation. Evaluation uses a labelled set of 36 questions with relevant-chunk patterns and reference answers. Answers are scored by an independent LLM judge (DeepSeek), which was checked against 20 manual ratings. All comparisons report paired bootstrap 95% CIs.
 
-* **Bug in the course pipeline.** The query-rewriting prompt ("in the original language") makes GigaChat translate 82% of queries into English, and Hit@5 drops from 0.94 to 0.64. A one-phrase fix and quote stripping restore it.
+* **Bug.** The query-rewriting prompt ("in the original language") makes GigaChat translate 82% of queries into English, and Hit@5 drops from 0.94 to 0.64. A one-phrase fix and quote stripping restore it.
 * **Cross-Encoder choice matters most.**
   * Context MRR@5 ranges from 0.23 to 0.73 depending on the model.
   * The course model (mMiniLMv2-L12 trained on mMARCO) is the best quality/speed trade-off. bge-reranker-v2-m3 matches its quality but is 8× slower on CPU.
