@@ -99,20 +99,4 @@ certs/russian_trusted_root_ca.pem            корневой сертифика
 
 ## Технологии
 
-Python, Jupyter, LangChain, sentence-transformers, PyTorch, rank-bm25, Snowball, pypdf, GigaChat SDK, OpenAI SDK (DeepSeek), pandas, Matplotlib.
-
-## English summary
-
-A study of the Advanced RAG pipeline from the course notebook on a Russian-language corpus: six official PDF documents on jewellery sales and consumer rights, 564 chunks. The pipeline consists of LLM query rewriting, hybrid retrieval (dense + BM25 via `EnsembleRetriever`), Cross-Encoder reranking and answer generation. Evaluation uses a labelled set of 36 questions with relevant-chunk patterns and reference answers. Answers are scored by an independent LLM judge (DeepSeek), which was checked against 20 manual ratings. All comparisons report paired bootstrap 95% CIs.
-
-* **Bug.** The query-rewriting prompt ("in the original language") makes GigaChat translate 82% of queries into English, and Hit@5 drops from 0.94 to 0.64. A one-phrase fix and quote stripping restore it.
-* **Cross-Encoder choice matters most.**
-  * Context MRR@5 ranges from 0.23 to 0.73 depending on the model.
-  * The course model (mMiniLMv2-L12 trained on mMARCO) is the best quality/speed trade-off. bge-reranker-v2-m3 matches its quality but is 8× slower on CPU.
-  * The English `ms-marco-MiniLM-L-6-v2` suggested by the assignment is worse than no reranking: its vocabulary shreds Cyrillic text and truncates 84% of chunks.
-* **Ensemble weights do not matter when the Cross-Encoder reranks the whole candidate pool**: top-5 contexts are identical in 9,072 of 9,072 comparisons. Without reranking, unequal weights act as a priority switch between retrievers.
-* **Encoders and k.**
-  * Larger encoders and E5 prefixes improve dense retrieval, but after reranking they matter only through pool recall.
-  * Reranking cost is linear in the number of candidates (13.7 ms each on CPU). Larger `k` slows the pipeline and slightly hurts quality.
-  * Stemmed BM25 improves BM25 and hybrid retrieval at no cost.
-* **Balance.** e5-large with prefixes, stemmed BM25, `k` = 5/5 and the course reranker keeps the course pipeline's recall and Hit@5 at 180 ms instead of 268 ms. Dense BGE-M3 retrieval without a reranker reaches nearly the same MRR@5 in 57 ms. A split-half check shows that picking the best of 405 configurations on 33 questions needs confirmation on a larger set.
+Python, Jupyter, LangChain, sentence-transformers, PyTorch, rank-bm25, Snowball, pypdf, GigaChat SDK, OpenAI SDK (DeepSeek), pandas, Matplotlib.the best of 405 configurations on 33 questions needs confirmation on a larger set.
